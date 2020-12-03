@@ -6,7 +6,6 @@
 
 // imports necessary libraries for Java swing
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 
 /**
@@ -14,33 +13,40 @@ import javax.swing.*;
  */
 public class Game implements Runnable {
     public void run() {
-        // NOTE : recall that the 'final' keyword notes immutability even for local variables.
 
         // Top-level frame in which game components live
-        // Be sure to change "TOP LEVEL FRAME" to the name of your game
         final JFrame frame = new JFrame("Word Hunt");
-        frame.setLocation(300, 300);
+        frame.setLocation(600, 600);
 
-        // Status panel
+        // Top status panel to display score
         final JPanel status_panel = new JPanel();
-        frame.add(status_panel, BorderLayout.SOUTH);
-        final JLabel status = new JLabel("Running...");
+        frame.add(status_panel, BorderLayout.NORTH);
+        final JTextArea status = new JTextArea("Running...");
         status_panel.add(status);
 
         // Main playing area
-        final GameCourt court = new GameCourt(status);
-        frame.add(court, BorderLayout.CENTER);
+        final LetterGrid grid = new LetterGrid(status);
+        frame.add(grid, BorderLayout.CENTER);
 
-        // Reset button
+        // Bottom panel containing load, reset, and solve buttons
         final JPanel control_panel = new JPanel();
-        frame.add(control_panel, BorderLayout.NORTH);
+        frame.add(control_panel, BorderLayout.SOUTH);
 
-        // Note here that when we add an action listener to the reset button, we define it as an
-        // anonymous inner class that is an instance of ActionListener with its actionPerformed()
-        // method overridden. When the button is pressed, actionPerformed() will be called.
+        final JButton load = new JButton("Load Board");
+        load.addActionListener(e -> grid.loadBoard());
+        control_panel.add(load);
+
+        final JButton save = new JButton("Save Board");
+        save.addActionListener(e -> grid.saveBoard());
+        control_panel.add(save);
+
         final JButton reset = new JButton("Reset");
-        reset.addActionListener(e -> court.reset());
+        reset.addActionListener(e -> grid.reset());
         control_panel.add(reset);
+
+        final JButton solve = new JButton("Solve");
+        solve.addActionListener(e -> grid.solve());
+        control_panel.add(solve);
 
         // Put the frame on the screen
         frame.pack();
@@ -48,7 +54,7 @@ public class Game implements Runnable {
         frame.setVisible(true);
 
         // Start game
-        court.reset();
+        grid.reset();
     }
 
     /**

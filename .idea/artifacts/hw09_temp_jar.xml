@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="hw09_temp:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/hw09_temp_jar</output-path>
+    <root id="archive" name="hw09_temp.jar">
+      <element id="module-output" name="hw09_temp" />
+    </root>
+  </artifact>
+</component>
