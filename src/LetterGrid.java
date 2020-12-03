@@ -14,7 +14,7 @@ import javax.swing.Timer;
 public class LetterGrid extends JPanel {
 
     // View/controller constants
-    public static final int DIMENSIONS = 4;
+    public static final int DIMENSIONS = 5;
     public static final int COURT_WIDTH = 600;
     public static final int COURT_HEIGHT = 600;
     private boolean playing = false; // whether the game is running

@@ -32,6 +32,17 @@ public class Game implements Runnable {
         final JPanel control_panel = new JPanel();
         frame.add(control_panel, BorderLayout.SOUTH);
 
+        final JButton howTo = new JButton("Instructions");
+        howTo.addActionListener(e -> JOptionPane.showMessageDialog(frame,
+                "This is a clone of the iMessage game Word Hunt. \n" +
+                        " To play, use your mouse to drag through letters to make words. \n" +
+                        "Try to score as many points as possible in 80 seconds. \n" +
+                        "Remember, longer words will receive more points! \n" +
+                        "If you get stuck, click reset for a new board, or solve to \n" +
+                        "see all possible words. You can also save and load boards to \n" +
+                        "replay at a later time."));
+        control_panel.add(howTo);
+
         final JButton load = new JButton("Load Board");
         load.addActionListener(e -> grid.loadBoard());
         control_panel.add(load);
@@ -47,6 +58,7 @@ public class Game implements Runnable {
         final JButton solve = new JButton("Solve");
         solve.addActionListener(e -> grid.solve());
         control_panel.add(solve);
+
 
         // Put the frame on the screen
         frame.pack();

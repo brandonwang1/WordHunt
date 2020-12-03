@@ -25,8 +25,8 @@ public class Trie {
      */
     public void add(String s) {
         TrieNode currentNode = rootNode;
-        for (int i = 0; i < s.length(); i++) {
-            int cIndex = s.charAt(i) - 'a';
+        for (char ch : s.toCharArray()) {
+            int cIndex = ch - 'a';
             // if the child node is null, make a new trieNode, otherwise just assign the child
             currentNode = currentNode.children[cIndex] == null ?
                     (currentNode.children[cIndex] = new TrieNode()) : currentNode.children[cIndex];
@@ -35,14 +35,14 @@ public class Trie {
     }
 
     /**
-     * Check if a string is in our Trie
+     * Check if a string is in our Trie (unused in final implementation)
      * @param s string to look for
      * @return true if it exists
      */
     public boolean contains(String s) {
         TrieNode currentNode = rootNode;
-        for (int i = 0; i < s.length(); i++) {
-            int cIndex = s.charAt(i) - 'a';
+        for (char ch : s.toCharArray()) {
+            int cIndex = ch - 'a';
             // if the child node is null, make a new trieNode, otherwise just assign the child
             if (currentNode.children[cIndex] == null) {
                 return false;

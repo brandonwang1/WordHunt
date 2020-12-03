@@ -14,7 +14,7 @@ import java.awt.*;
  */
 public class Letter extends JComponent {
 
-    public char letter;
+    private char letter;
     private boolean selected = false;
 
     /**

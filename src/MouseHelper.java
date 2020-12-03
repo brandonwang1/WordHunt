@@ -31,7 +31,7 @@ public class MouseHelper extends MouseAdapter {
             Letter l = ((Letter)e.getSource());
             if (!l.isSelected()) {
 //                System.out.println(l.letter);
-                lg.getCurrentWord().add(l.letter);
+                lg.getCurrentWord().add(l.getLetter());
                 l.setSelected(true);
             }
         }
