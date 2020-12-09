@@ -35,9 +35,9 @@ public class LetterGrid extends JPanel {
     // Master wordlist. Using a HashSet for O(1) insertion and lookups,
     // compared to O(log(n)) with binary search.
     private final Set<String> wordList = new HashSet<>();
-    private final String DICTIONARY_FILE = "files/dictionary.txt"; // Where the word list is stored
-    private final String BOARD_FILE = "files/savedBoard.txt";
-    private final Set<String> foundWords = new HashSet<>(); // Set of words that have already been found
+    private final String boardFile = "files/savedBoard.txt";
+    // Set of words that have already been found
+    private final Set<String> foundWords = new HashSet<>();
 
     /**
      * mouseDown Getter
@@ -198,7 +198,8 @@ public class LetterGrid extends JPanel {
      */
     void tick() {
         if (playing) {
-            gameTime.setText(getRemainingTime() + " Seconds Remaining          Current score is " + userScore +
+            gameTime.setText(getRemainingTime() +
+                    " Seconds Remaining          Current score is " + userScore +
                     "\n" + lastWordStatus);
             // If time's up, end the game
             if (getRemainingTime() == 0) {
@@ -230,7 +231,8 @@ public class LetterGrid extends JPanel {
         }
 
         HashSet<String> foundWords = new HashSet<>(); // Words found so far
-        boolean[][] searched = new boolean[DIMENSIONS][DIMENSIONS]; // Grid to hold the indexes we have searched.
+        // Grid to hold the indexes we have searched.
+        boolean[][] searched = new boolean[DIMENSIONS][DIMENSIONS];
         for (int i = 0; i < DIMENSIONS; i++) {
             for (int j = 0; j < DIMENSIONS; j++) {
                 int cl = pGrid[i][j]; // current letter representation as int
@@ -273,7 +275,8 @@ public class LetterGrid extends JPanel {
                 // Does this character exist in the trie?
                 if (nextNode != null) {
                     searched[y2][x2] = true; // mark this node as searched
-                    String nextString = curString + ((char) (nextChar + 'a')); // convert back to string
+                    // convert back to string
+                    String nextString = curString + ((char) (nextChar + 'a'));
                     dfs(pGrid, searched, y2, x2, nextNode, nextString, foundWords);
                 }
                 searched[y2][x2] = false; // mark this node as un-searched once we finish it
@@ -288,11 +291,12 @@ public class LetterGrid extends JPanel {
 
     /**
      * Loads a board from the BOARD_FILE. The file format consists of two lines:
-     * The first line is the board name, and the second line has 16 chars representing the letter grid.
+     * The first line is the board name, and the second line has 16 chars representing
+     * the letter grid.
      */
     public void loadBoard() {
         try {
-            BufferedReader br = new BufferedReader(new FileReader(BOARD_FILE));
+            BufferedReader br = new BufferedReader(new FileReader(boardFile));
             String boardName = br.readLine();
             stringToBoard(br.readLine());
             JOptionPane.showMessageDialog(null, boardName + " loaded successfully!");
@@ -303,13 +307,16 @@ public class LetterGrid extends JPanel {
 
     /**
      * Saves the current board to the BOARD_FILE. The file format consists of two lines:
-     * The first line is the board name, and the second line has 16 chars representing the letter grid.
+     * The first line is the board name, and the second line has 16 chars
+     * representing the letter grid.
      */
     public void saveBoard() {
         String boardName = JOptionPane.showInputDialog("Please enter a name for this board: ");
-        if (boardName == null) return;
+        if (boardName == null) {
+            return;
+        }
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter(BOARD_FILE));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(boardFile));
             bw.write(boardName);
             bw.newLine();
             bw.write(boardToString());
@@ -326,7 +333,9 @@ public class LetterGrid extends JPanel {
      */
     public void loadDict() {
         try {
-            BufferedReader br = new BufferedReader(new FileReader(DICTIONARY_FILE));
+            // Where the word list is stored
+            String dictionaryFile = "files/dictionary.txt";
+            BufferedReader br = new BufferedReader(new FileReader(dictionaryFile));
             String l;
             while ((l = br.readLine()) != null) {
                 wordList.add(l);

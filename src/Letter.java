@@ -35,7 +35,8 @@ public class Letter extends JComponent {
         g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 15, 15);
         g.setColor(Color.BLACK); // temp for now
         g.setFont(new Font("Courier New", Font.PLAIN, 24));
-        g.drawString(String.valueOf(letter).toUpperCase(),  this.getWidth() / 2, this.getHeight() / 2);
+        g.drawString(String.valueOf(letter).toUpperCase(),
+                this.getWidth() / 2, this.getHeight() / 2);
     }
 
     public boolean isSelected() {

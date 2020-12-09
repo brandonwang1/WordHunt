@@ -1,11 +1,12 @@
 import java.util.Arrays;
 
 /**
- * Class to create a Trie for storing words. Used since we have O(S) lookup where S is the length of the string,
+ * Class to create a Trie for storing words. Used since we have O(S) lookup where
+ * S is the length of the string,
  * and since it allows us to prune the search if we reach a null Trie node.
  */
 public class Trie {
-    public static int DICT_SIZE = 26; // only using 26 lowercase letters
+    private static final int DICT_SIZE = 26; // only using 26 lowercase letters
 
     TrieNode rootNode = new TrieNode();
 
