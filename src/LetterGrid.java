@@ -236,7 +236,7 @@ public class LetterGrid extends JPanel {
         for (int i = 0; i < DIMENSIONS; i++) {
             for (int j = 0; j < DIMENSIONS; j++) {
                 int cl = pGrid[i][j]; // current letter representation as int
-                Trie.TrieNode curNode = wordTrie.rootNode.children[cl];
+                Trie.TrieNode curNode = wordTrie.getRootNode().getChildren()[cl];
                 if (curNode != null) {
                     String curString = "" + ((char) (cl + 'a'));
                     searched[i][j] = true;
@@ -259,7 +259,7 @@ public class LetterGrid extends JPanel {
              Trie.TrieNode curNode, String curString, HashSet<String> foundWords) {
 
         // If the current string is a valid string that's long enough, add it to our list
-        if (curNode.isLast && curString.length() >= 3) {
+        if (curNode.isLast() && curString.length() >= 3) {
             foundWords.add(curString);
         }
 
@@ -271,7 +271,7 @@ public class LetterGrid extends JPanel {
             // Check if we are in a valid position we haven't been to yet
             if (y2 >= 0 && y2 < DIMENSIONS && x2 >= 0 && x2 < DIMENSIONS && !searched[y2][x2]) {
                 int nextChar = pGrid[y2][x2];
-                Trie.TrieNode nextNode = curNode.children[nextChar];
+                Trie.TrieNode nextNode = curNode.getChildren()[nextChar];
                 // Does this character exist in the trie?
                 if (nextNode != null) {
                     searched[y2][x2] = true; // mark this node as searched

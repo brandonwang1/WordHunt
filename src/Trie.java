@@ -8,11 +8,19 @@ import java.util.Arrays;
 public class Trie {
     private static final int DICT_SIZE = 26; // only using 26 lowercase letters
 
-    TrieNode rootNode = new TrieNode();
+    private final TrieNode rootNode = new TrieNode();
 
-    class TrieNode {
-        TrieNode[] children = new TrieNode[DICT_SIZE];
-        boolean isLast; // is this a leaf?
+    static class TrieNode {
+        public TrieNode[] getChildren() {
+            return children;
+        }
+
+        public boolean isLast() {
+            return isLast;
+        }
+
+        private final TrieNode[] children = new TrieNode[DICT_SIZE];
+        private boolean isLast; // is this a leaf?
         public TrieNode() {
             // Initialize to all empty
             Arrays.fill(children, null);

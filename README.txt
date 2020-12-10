@@ -11,13 +11,15 @@ PennKey: brandw
   is an appropriate use of the concept. Incorporate the feedback you got after
   submitting your proposal.
 
-  1. 2D arrays - the board state is modeled as a NxN array of Letters in the MouseHelper class,
-  which is displayed to the user as a 2D grid of randomly generated chars (which is why it's an appropriate model).
+  1. 2D arrays - the board state is modeled as a NxN array of Letter objects (I need to store objects for GUI updates,
+   rather than a primitive type) in the MouseHelper class, which is displayed to the user as a 2D grid of
+   randomly generated chars (which is why it's an appropriate model).
 
   2. Collections - the current word that the user has dragged is stored as an ArrayList<Character> currentWord in the
   MouseHelper class. It stores the letters the user has moused over, in order. This is preferable to using a list since
-  we don't know the size/length of the array the user will generate. ArrayList preserves amortized O(1) insertion so
-  it's a better choice than LinkedList as well.
+  we don't know the size/length of the array the user will generate and need to handle any size.
+   ArrayList preserves O(1) insertion so it's a better choice than LinkedList as well. In this case, we only need to
+   store a char rather than the whole Letter object.
 
   3. File I/O - Used to load and save board states to a txt file. Each state consists of two lines. Line 1 has a name for
    the board, and line 2 contains the letters in the board compressed from a 2d array into a 1d array of length N^2.
